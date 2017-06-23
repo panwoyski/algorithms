@@ -39,6 +39,7 @@ class Car: public Vehicle {
 	Wheel * wheels;
 public:
 
+    // Klasa bazowa nie ma zero argumentowego konstruktora, blad kompilacji
 	// od biedy skoro liczba kol jest stala nie ma potrzeby tworzyc dynamicznie
 	Car() {
 		wheels = new Wheel[4];
