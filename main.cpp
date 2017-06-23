@@ -3,6 +3,8 @@
 #include <sstream>
 #include <memory>
 #include <map>
+#include <vector>
+#include <iterator>
 
 std::string generateTestStream(); 
 
@@ -25,8 +27,15 @@ private:
 int main(int argc, const char * argv[]) {
     (void)argc;
     (void)argv;
-    auto stream = generateTestStream();
-    std::cout << stream;
+    auto str = generateTestStream();
+
+    auto stream = std::istringstream(str);
+    std::vector<std::string> tokens{std::istream_iterator<std::string>{stream},
+                                    std::istream_iterator<std::string>()};
+
+    for (const auto& token : tokens) {
+        std::cout << token << std::endl;
+    }
     return 0;
 }
 
