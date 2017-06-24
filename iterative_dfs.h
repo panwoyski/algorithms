@@ -1,4 +1,5 @@
 #pragma once
+
 #include <vector>
 #include "graph.h"
 #include "dfs.h"
@@ -13,7 +14,7 @@ public:
 
 bool IterativeDFS::solve(unsigned starting_point, unsigned expected) {
     std::deque<unsigned> dfs;
-    
+
     bool found = false;
     dfs.push_front(starting_point);
     do {

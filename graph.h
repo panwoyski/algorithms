@@ -7,13 +7,15 @@
 
 class Graph {
     std::map<unsigned, std::set<unsigned>> m_adj;
+    using adj_list_t = decltype(m_adj)::mapped_type;
+    adj_list_t m_empty_adj_list;
 public:
     Graph() = default;
     Graph(std::istream & is);
 
     void addEdge(unsigned a, unsigned b);
 
-    decltype(m_adj)::mapped_type const & getNeighbours(unsigned vertex) const;
+    const adj_list_t & getNeighbours(unsigned vertex) const;
 
     std::size_t verticesAmount() const { return m_adj.size(); }
 
@@ -38,9 +40,13 @@ void Graph::addEdge(unsigned a, unsigned b) {
     this->failsafe_add(b, a);
 }
 
-decltype(Graph::m_adj)::mapped_type const &
-Graph::getNeighbours(unsigned vertex) const {
-    return m_adj.at(vertex);
+const Graph::adj_list_t & Graph::getNeighbours(unsigned vertex) const {
+    try {
+        return m_adj.at(vertex);
+    }
+    catch (std::out_of_range &) {
+        return m_empty_adj_list;
+    }
 }
 
 void Graph::failsafe_add(unsigned a, unsigned b) {

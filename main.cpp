@@ -11,11 +11,7 @@ int main() {
     unsigned room1 = *it;
     unsigned room2 = *(++it);
 
-    // Mozna by tu sprawdzic czy oba pokoje wystepuja
-    // w liscie pokoi i skrocic obliczenia
     auto graph = Graph{std::cin};
-    //std::cout << "Graph structure\n";
-    //std::cout << graph;
 #ifndef RECURSIVE
     auto dfs = IterativeDFS{graph};
 #else
