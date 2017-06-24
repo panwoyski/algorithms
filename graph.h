@@ -5,8 +5,6 @@
 #include <istream>
 #include <iterator>
 
-#include <iostream>
-
 class Graph {
     std::map<unsigned, std::set<unsigned>> m_adj;
 public:
@@ -30,7 +28,6 @@ Graph::Graph(std::istream & is) {
         unsigned vertexA = *it;
         ++it;
         unsigned vertexB = *it;
-        //std::cout << "Adding: " << vertexA << "--" << vertexB << std::endl;
         addEdge(vertexA, vertexB);
         ++it;
     }

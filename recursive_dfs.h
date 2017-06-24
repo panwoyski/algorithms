@@ -1,19 +1,13 @@
 #pragma once
 #include <vector>
 #include "graph.h"
+#include "dfs.h"
 
-#include <iostream>
-
-class RecursiveDFS {
-    std::vector<bool> m_visited;
-    const Graph & m_graph;
-
+class RecursiveDFS : public DFS {
 public:
-    RecursiveDFS(const Graph & graph)
-        : m_visited(graph.verticesAmount(), false)
-        , m_graph{graph} {}
+    RecursiveDFS(const Graph & graph) : DFS{graph} {}
 
-    bool solve(unsigned starting_point, unsigned expected);
+    bool solve(unsigned starting_point, unsigned expected) override;
 private:
     bool recur(unsigned vertex, unsigned expected);
 };
@@ -23,7 +17,6 @@ bool RecursiveDFS::solve(unsigned starting_point, unsigned expected) {
 }
 
 bool RecursiveDFS::recur(unsigned vertex, unsigned expected) {
-    std::cout << "Testing vertex: " << vertex << std::endl;
     if (vertex == expected)
         return true;
 

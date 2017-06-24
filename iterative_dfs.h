@@ -1,20 +1,14 @@
 #pragma once
 #include <vector>
 #include "graph.h"
+#include "dfs.h"
 #include <stack>
 
-class IterativeDFS {
-    std::vector<bool> m_visited;
-    const Graph & m_graph;
-
+class IterativeDFS : public DFS {
 public:
-    IterativeDFS(const Graph & graph)
-        : m_visited(graph.verticesAmount(), false)
-        , m_graph{graph} {}
+    IterativeDFS(const Graph & graph) : DFS{graph} {}
 
-    bool solve(unsigned starting_point, unsigned expected);
-private:
-    bool recur(unsigned vertex, unsigned expected);
+    bool solve(unsigned starting_point, unsigned expected) override;
 };
 
 bool IterativeDFS::solve(unsigned starting_point, unsigned expected) {
@@ -40,24 +34,5 @@ bool IterativeDFS::solve(unsigned starting_point, unsigned expected) {
     } while (!dfs.empty());
 
     return found;
-}
-
-bool IterativeDFS::recur(unsigned vertex, unsigned expected) {
-    std::cout << "Testing vertex: " << vertex << std::endl;
-    if (vertex == expected)
-        return true;
-
-    m_visited[vertex] = true;
-    for (const auto & curr_vert : m_graph.getNeighbours(vertex)) {
-        if (m_visited[curr_vert])
-            continue;
-
-        bool ret = recur(curr_vert, expected);
-
-        if (true == ret)
-            return ret;
-    }
-
-    return false;
 }
 

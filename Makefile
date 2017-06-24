@@ -1,12 +1,19 @@
 CC=g++
 CFLAGS=-c -std=c++11 -Wall -pedantic
 LDFLAGS=
-HEADERS=graph.h iterative_dfs.h
-SOURCES=iterative_main.cpp
+HEADERS=graph.h
+SOURCES=main.cpp
 OBJECTS=$(SOURCES:.cpp=.o)
 EXECUTABLE=solver.out
 
-all: $(SOURCES) $(EXECUTABLE)
+all: iterative
+
+iterative: HEADERS += iterative_dfs.h
+iterative: clean $(OBJECTS) $(EXECUTABLE)
+
+recursive: CFLAGS += -DRECURSIVE
+recursive: HEADERS += recursive_dfs.h
+recursive: clean $(OBJECTS) $(EXECUTABLE)
 
 $(EXECUTABLE): $(OBJECTS)
 	$(CC) $(LDFLAGS) $(OBJECTS) -o $@
