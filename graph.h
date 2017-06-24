@@ -6,12 +6,12 @@
 #include <iterator>
 
 class Graph {
-    std::map<unsigned, std::set<unsigned>> m_adj; 
+    std::map<unsigned, std::set<unsigned>> m_adj;
 public:
     Graph() = default;
-    Graph(std::istream & is); 
+    Graph(std::istream & is);
 
-    void addEdge(unsigned a, unsigned b); 
+    void addEdge(unsigned a, unsigned b);
 
     decltype(m_adj)::mapped_type const & getNeighbours(unsigned vertex) const;
 
@@ -19,7 +19,7 @@ public:
 
     friend std::ostream & operator<<(std::ostream &, const Graph&);
 private:
-    void failsafe_add(unsigned a, unsigned b); 
+    void failsafe_add(unsigned a, unsigned b);
 };
 
 Graph::Graph(std::istream & is) {
@@ -57,7 +57,7 @@ std::ostream & operator<<(std::ostream& os, const Graph & graph) {
         }
         os << std::endl;
     }
-        
+
     return os;
 }
 

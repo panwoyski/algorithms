@@ -7,10 +7,12 @@ int main() {
     unsigned room1 = *it;
     unsigned room2 = *(++it);
 
-    auto graph = Graph(std::cin);
-    auto dfs = DFS(graph);
+    // Mozna by tu sprawdzic czy oba pokoje wystepuja
+    // w liscie pokoi i skrocic obliczenia
+    auto graph = Graph{std::cin};
+    auto dfs = DFS{graph};
     auto result = dfs.solve(room1, room2);
-    
+
     std::cout << (result ? "yes" : "no") << std::endl;
 
     return 0;
