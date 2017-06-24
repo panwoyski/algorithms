@@ -10,7 +10,7 @@ public:
     DFS(const Graph & graph)
         : m_visited(graph.verticesAmount(), false)
         , m_graph{graph} {}
-    
+
     bool solve(unsigned starting_point, unsigned expected);
 private:
     bool recur(unsigned vertex, unsigned expected);
