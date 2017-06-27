@@ -5,6 +5,7 @@
 #include "bubble_sort.hpp"
 #include "insert_sort.hpp"
 #include "selection_sort.hpp"
+#include "heap_sort.hpp"
 
 template <typename iterable_t>
 void printIterable(std::ostream & os, iterable_t iterable) {
@@ -63,10 +64,26 @@ void testSelection() {
     applySorting(sorting::selectionSort, basicTestVector);
 }
 
+void testHeap() {
+    std::array<int, 8> basicTestArray{{6, 5, 3, 1, 8, 2, 7, 4}};
+    std::list<int> basicTestList{basicTestArray.begin(), basicTestArray.end()};
+    std::vector<int> basicTestVector{basicTestArray.begin(), basicTestArray.end()};
+ 
+    std::cout << "HEAP SORT" << std::endl;
+    std::cout << "Array test\n";
+    applySorting(sorting::heapSort, basicTestArray);
+    std::cout << "List test\n";
+    applySorting(sorting::heapSort, basicTestList);
+    std::cout << "Vector test\n";
+    applySorting(sorting::heapSort, basicTestVector);
+}
+
 int main() {
     testBubble();
     testInsertion();
     testSelection();
+    testHeap();
 
     return  0;
 }
+
