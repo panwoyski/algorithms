@@ -4,6 +4,7 @@
 #include <string>
 #include "bubble_sort.hpp"
 #include "insert_sort.hpp"
+#include "selection_sort.hpp"
 
 template <typename iterable_t>
 void printIterable(std::ostream & os, iterable_t iterable) {
@@ -48,9 +49,24 @@ void testInsertion() {
     applySorting(sorting::insertionSort, basicTestVector);
 }
 
+void testSelection() {
+    std::array<int, 8> basicTestArray{{6, 5, 3, 1, 8, 2, 7, 4}};
+    std::list<int> basicTestList{basicTestArray.begin(), basicTestArray.end()};
+    std::vector<int> basicTestVector{basicTestArray.begin(), basicTestArray.end()};
+ 
+    std::cout << "SELECTION SORT" << std::endl;
+    std::cout << "Array test\n";
+    applySorting(sorting::selectionSort, basicTestArray);
+    std::cout << "List test\n";
+    applySorting(sorting::selectionSort, basicTestList);
+    std::cout << "Vector test\n";
+    applySorting(sorting::selectionSort, basicTestVector);
+}
+
 int main() {
     testBubble();
     testInsertion();
+    testSelection();
 
     return  0;
 }
