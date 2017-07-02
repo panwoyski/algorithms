@@ -6,11 +6,16 @@ SOURCES=main.cpp
 OBJECTS=$(SOURCES:.cpp=.o)
 EXECUTABLE=solver.out
 
-all: iterative
+all: union
 
+union: HEADERS += union_find.h
+union: clean $(OBJECTS) $(EXECUTABLE)
+
+iterative: CFLAGS += -DUSE_DFS
 iterative: HEADERS += iterative_dfs.h
 iterative: clean $(OBJECTS) $(EXECUTABLE)
 
+recursive: CFLAGS += -DUSE_DFS
 recursive: CFLAGS += -DRECURSIVE
 recursive: HEADERS += recursive_dfs.h
 recursive: clean $(OBJECTS) $(EXECUTABLE)
