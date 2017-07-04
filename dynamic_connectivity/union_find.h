@@ -4,6 +4,7 @@
 #include <vector>
 #include <iterator>
 
+// TODO change map to vector somehow
 class UnionFind {
     std::map<unsigned, unsigned> m_assocs;
     std::map<unsigned, unsigned> m_treeLens;
