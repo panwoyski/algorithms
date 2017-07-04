@@ -6,6 +6,7 @@
 
 class UnionFind {
     std::map<unsigned, unsigned> m_assocs;
+    std::map<unsigned, unsigned> m_treeLens;
 public:
     UnionFind() = default;
     UnionFind(std::istream & is);
@@ -48,16 +49,29 @@ void UnionFind::addUnion(unsigned a, unsigned b) {
     if (a == b)
         return;
     
-    if (m_assocs.count(b) < 1)
+    if (m_assocs.count(b) < 1) {
         m_assocs[b] = b;
+        m_treeLens[b] = 1;
+    }
     
-    if (m_assocs.count(a) < 1)
+    if (m_assocs.count(a) < 1) {
         m_assocs[a] = a;
+        m_treeLens[a] = 1;
+    }
 
     auto rootA = this->root(a);
     auto rootB = this->root(b);
 
-    m_assocs[rootA] = rootB;
+    auto lenA = m_treeLens[a];
+    auto lenB = m_treeLens[b];
+
+    if (lenA < lenB) {
+        m_assocs[rootA] = rootB;
+        m_treeLens[b] += lenA;
+    } else {
+        m_assocs[rootB] = rootA;
+        m_treeLens[a] += lenB;
+    }
 }
 
 bool UnionFind::areConnected(unsigned a, unsigned b) {
