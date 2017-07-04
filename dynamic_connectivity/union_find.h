@@ -40,6 +40,7 @@ UnionFind::UnionFind(std::istream & is) {
 
 unsigned UnionFind::root(unsigned index) {
     while (index != m_assocs[index]) {
+        m_assocs[index] = m_assocs[m_assocs[index]];
         index = m_assocs[index];
     }
 
